@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#101722">
+    <title>Pixel Runner</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="game.js" defer></script>
+  </head>
+  <body>
+    <main class="game-container">
+      <header class="game-header">
+        <p class="eyebrow">A PIXEL-SIZED ADVENTURE</p>
+        <h1>PIXEL RUNNER</h1>
+        <div class="hud" aria-label="遊戲分數">
+          <span>SCORE: <strong id="score">00000</strong></span>
+          <span>HI: <strong id="high-score">00000</strong></span>
+          <span>COINS: <strong id="coins">00000</strong></span>
+        </div>
+      </header>
+
+      <section class="game-shell" aria-label="Pixel Runner 遊戲">
+        <canvas
+          id="game-canvas"
+          width="900"
+          height="400"
+          role="img"
+          aria-label="Pixel Runner。使用空白鍵或向上鍵跳躍，向下鍵快速下降。"
+        >
+          您的瀏覽器不支援 Canvas，請使用新版瀏覽器。
+        </canvas>
+        <p id="live-status" class="visually-hidden" aria-live="polite"></p>
+      </section>
+
+      <nav class="controls" aria-label="遊戲控制">
+        <button id="play-button" class="button button-primary" type="button">PLAY</button>
+        <button id="pause-button" class="button" type="button" disabled>PAUSE</button>
+      </nav>
+
+      <p class="hint">
+        <kbd>SPACE</kbd> / <kbd>↑</kbd> 跳躍
+        <span aria-hidden="true">·</span>
+        <kbd>↓</kbd> 快速下降
+        <span aria-hidden="true">·</span>
+        <kbd>P</kbd> 暫停
+        <span aria-hidden="true">·</span>
+        撞擊後按 <kbd>ENTER</kbd> 重試
+      </p>
+    </main>
+  </body>
+</html>
