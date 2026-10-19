@@ -47,6 +47,8 @@
   const highScoreElement = document.querySelector("#high-score");
   const coinsElement = document.querySelector("#coins");
   const liveStatus = document.querySelector("#live-status");
+  const playerSprite = new Image();
+  playerSprite.src = "giphy-runner.png";
 
   if (
     !(canvas instanceof HTMLCanvasElement)
@@ -184,13 +186,33 @@
         ? Math.sin(this.runTime * 2.4) * 1.5
         : 0;
       const y = Math.round(this.y + bounce);
+
+      ctx.fillStyle = "rgba(18, 28, 39, 0.2)";
+      ctx.fillRect(x - 4, this.groundY + 3, this.width + 8, 5);
+
+      if (playerSprite.complete && playerSprite.naturalWidth > 0) {
+        const frameWidth = playerSprite.naturalWidth / 4;
+        const frameIndex = this.isGrounded && !this.isDead
+          ? Math.floor(this.runTime * 2.8) % 4
+          : this.isDead ? 3 : 1;
+        ctx.drawImage(
+          playerSprite,
+          frameIndex * frameWidth,
+          0,
+          frameWidth,
+          playerSprite.naturalHeight,
+          x - 13,
+          y - 4,
+          62,
+          55,
+        );
+        return;
+      }
+
       const bodyColor = this.isDead ? "#ba4b54" : "#303843";
       const legSwing = this.isGrounded && !this.isDead
         ? Math.sin(this.runTime * 2.4) * 4
         : 0;
-
-      ctx.fillStyle = "rgba(18, 28, 39, 0.2)";
-      ctx.fillRect(x - 4, this.groundY + 3, this.width + 8, 5);
 
       ctx.fillStyle = bodyColor;
       ctx.fillRect(x + 8, y + 15, 28, 30);
